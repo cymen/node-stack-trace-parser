@@ -1,0 +1,24 @@
+{
+    "name": "stack-trace-parser",
+    "description": "parse stack trace",
+    "version": "0.0.1",
+    "dependencies": {},
+    "engines": {
+        "node": ">=0.8"
+    },
+    "devDependencies": {
+        "jasmine-node": "1.13.1",
+        "lodash": "2.4.1"
+    },
+    "licenses": [{
+        "type": "MIT",
+        "url": "https://github.com/cymen/node-stack-trace-parser/blob/master/LICENSE"
+    }],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cymen/node-stack-trace-parser"
+    },
+    "scripts": {
+        "test": "jasmine-node --forceexit spec"
+    }
+}
