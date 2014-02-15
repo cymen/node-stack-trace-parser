@@ -36,6 +36,10 @@ var getFunctionName = function(line) {
 };
 
 module.exports = {
+  parse: function(error) {
+    return error.stack.split('\n').slice(1).map(this.parseLine);
+  },
+
   parseLine: function(line) {
     return _.extend(
         getFileDetails(line),

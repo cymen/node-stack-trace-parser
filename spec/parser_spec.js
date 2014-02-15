@@ -37,7 +37,7 @@ describe('parser', function() {
     });
   });
 
-  xdescribe('simple stack trace', function() {
+  describe('simple stack trace', function() {
     var error = {},
         parsed;
 
@@ -50,8 +50,8 @@ describe('parser', function() {
     });
 
     it('parses the file names from a basic stack trace', function() {
-        expect(parsed[0].getFileName()).toBe('/Users/hoitz/develop/test.coffee');
-        expect(pasred[1].getFileName()).toBe('timers.js');
+        expect(parsed[0].fileName).toBe('/Users/hoitz/develop/test.coffee');
+        expect(parsed[1].fileName).toBe('timers.js');
     });
   });
 });
