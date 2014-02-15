@@ -1,7 +1,8 @@
 {
     "name": "stack-trace-parser",
     "description": "parse stack trace",
-    "version": "0.0.1",
+    "version": "0.0.2",
+    "main": "src/parser.js",
     "dependencies": {},
     "engines": {
         "node": ">=0.8"
