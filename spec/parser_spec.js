@@ -37,21 +37,41 @@ describe('parser', function() {
     });
   });
 
-  describe('simple stack trace', function() {
-    var error = {},
-        parsed;
+  describe('stack trace', function() {
+    var error;
 
     beforeEach(function() {
+      error = {};
+    });
+
+    it('parses the file names from a basic stack trace', function() {
       error.stack =
         'Error: Foo\n' +
         '    at [object Object].global.every [as _onTimeout] (/Users/hoitz/develop/test.coffee:36:3)\n' +
         '    at Timer.listOnTimeout [as ontimeout] (timers.js:110:15)\n';
+
       parsed = parser.parse(error);
+
+      expect(parsed[0].fileName).toBe('/Users/hoitz/develop/test.coffee');
+      expect(parsed[1].fileName).toBe('timers.js');
     });
 
-    it('parses the file names from a basic stack trace', function() {
-        expect(parsed[0].fileName).toBe('/Users/hoitz/develop/test.coffee');
-        expect(parsed[1].fileName).toBe('timers.js');
+    it('parses type exception type', function() {
+      error.stack = 
+        'ReferenceError: d is not defined\n' +
+        '    at Object.<anonymous> (/Users/cvig/dev/node-stack-trace-parser/example-undefined.js:5:7)\n' +
+        '    at Module._compile (module.js:456:26)\n' +
+        '    at Object.Module._extensions..js (module.js:474:10)\n' +
+        '    at Module.load (module.js:356:32)\n' +
+        '    at Function.Module._load (module.js:312:12)\n' +
+        '    at Function.Module.runMain (module.js:497:10)\n' +
+        '    at startup (node.js:119:16)\n' +
+        '    at node.js:902:3\n';
+
+      parsed = parser.parse(error);
+
+      expect(parsed.type).toBe('ReferenceError');
+      expect(parsed.message).toBe('d is not defined');
     });
   });
 });

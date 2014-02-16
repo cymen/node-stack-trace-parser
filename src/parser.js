@@ -35,9 +35,23 @@ var getFunctionName = function(line) {
   };
 };
 
+var getTypeAndMessage = function(line) {
+  var typeAndMessageArray = line.split(': ');
+
+  return {
+    type: typeAndMessageArray[0],
+    message: typeAndMessageArray[1]
+  };
+};
+
 module.exports = {
   parse: function(error) {
-    return error.stack.split('\n').slice(1).map(this.parseLine);
+    var lines = error.stack.split('\n');
+
+    var typeAndMessage = getTypeAndMessage(lines[0]);
+    var parsedLines = lines.slice(1).map(this.parseLine);
+
+    return _.extend(typeAndMessage, parsedLines);
   },
 
   parseLine: function(line) {
