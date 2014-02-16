@@ -4,9 +4,10 @@
 
 `stack-trace-parser` parses stack traces
 
-## parses exception.trace
+## Examples
 
-### example of Error exception (see `example.js`)
+### Error exception
+From `example.js`:
 
     var stackTraceParser = require('./src/parser')
         assert = require('assert');
@@ -24,7 +25,8 @@
       assert.strictEqual(stackTrace[0].columnNumber, 9, "Expected column number to match column 9 of this file!");
     }
 
-### example of ReferenceError exception (see `example-undefined.js`)
+### ReferenceError exception
+From `example-undefined.js`:
 
     var stackTraceParser = require('./src/parser')
         assert = require('assert');
