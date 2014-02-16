@@ -1,8 +1,10 @@
 var _ = require('lodash');
 
+var evalRegex = /at .*\.eval/;
+
 var getEvalDetails = function(line) {
   var evalDetails = {
-    isEval: line.indexOf('at eval') !== -1
+    isEval: line.indexOf('at eval') !== -1 || evalRegex.test(line)
   };
 
   if (evalDetails.isEval) {

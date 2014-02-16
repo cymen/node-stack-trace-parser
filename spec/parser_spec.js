@@ -35,6 +35,17 @@ describe('parser', function() {
       expect(parsedLine.evalLineNumber).toBe(7);
       expect(parsedLine.evalColumnNumber).toBe(16);
     });
+
+    it('parses out eval details even if entry differs', function() {
+      var line = 'at Object.eval (eval at <anonymous> (/Users/cvig/dev/node-stack-trace-parser/example-eval.js:10:8), <anonymous>:1:20)';
+
+      var parsedLine = parser.parseLine(line);
+
+      expect(parsedLine.isEval).toBe(true);
+      expect(parsedLine.evalFileName).toBe('<anonymous>');
+      expect(parsedLine.evalLineNumber).toBe(1);
+      expect(parsedLine.evalColumnNumber).toBe(20);
+    });
   });
 
   describe('stack trace', function() {
