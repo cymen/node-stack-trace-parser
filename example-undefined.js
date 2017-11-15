@@ -1,5 +1,5 @@
-var stackTraceParser = require('./src/parser')
-    assert = require('assert');
+var stackTraceParser = require('./src/parser');
+var assert = require('assert');
 
 try {
   d = d * 2;
